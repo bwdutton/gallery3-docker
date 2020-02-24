@@ -1,0 +1,22 @@
+# docker-compose.yml
+version: '3.0'
+
+services:
+  mysql:
+    image: mariadb:10
+    environment:
+      - MYSQL_ROOT_PASSWORD=myrootpw
+      - MYSQL_DATABASE=gallery3
+      - MYSQL_USER=gallery3
+      - MYSQL_PASSWORD=mygallery3pw
+    volumes:
+      - ./mysql:/var/lib/mysql
+  gallery3:
+    #image: bwdutton/gallery3
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./gallery-var:/var/www/var
