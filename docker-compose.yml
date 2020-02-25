@@ -12,10 +12,10 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
   gallery3:
-    #image: bwdutton/gallery3
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: bwdutton/gallery3
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
     ports:
       - "80:80"
     volumes:
