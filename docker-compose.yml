@@ -5,10 +5,10 @@ services:
   mysql:
     image: mariadb:10
     environment:
-      - MYSQL_ROOT_PASSWORD=myrootpw
-      - MYSQL_DATABASE=gallery3
-      - MYSQL_USER=gallery3
-      - MYSQL_PASSWORD=mygallery3pw
+      MYSQL_ROOT_PASSWORD: myrootpw
+      MYSQL_DATABASE: gallery3
+      MYSQL_USER: gallery3
+      MYSQL_PASSWORD: mygallery3pw
     volumes:
       - ./mysql:/var/lib/mysql
   gallery3:
@@ -16,6 +16,15 @@ services:
 #    build:
 #      context: .
 #      dockerfile: Dockerfile
+    environment:
+# set these if you wish to use the CLI installer, otherwise you enter them on the web
+      MYSQL_ROOT_PASSWORD: myrootpw
+      MYSQL_DATABASE: gallery3
+      MYSQL_USER: gallery3
+      MYSQL_PASSWORD: mygallery3pw
+      MYSQL_HOST: mysql
+      G3_PASSWORD:
+      DB_PREFIX:
     ports:
       - "80:80"
     volumes:
