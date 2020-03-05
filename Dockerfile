@@ -22,7 +22,7 @@ RUN \
 
 RUN \
   git clone https://github.com/bwdutton/gallery3.git && \ 
-  cd /gallery3 && git checkout 3.1.1 && rm -rf .git 
+  cd /gallery3 && git checkout 3.1.2 && rm -rf .git 
 
 RUN \
   git clone https://github.com/bwdutton/gallery3-contrib.git && \
@@ -35,9 +35,7 @@ RUN rm -rf /var/www/* && \
     rm -rf /gallery3 && \
     chown -R www-data:www-data /var/www/*
 
-ADD nginx-gallery.conf /etc/nginx/sites-enabled/default
-ADD entrypoint.sh /entrypoint.sh
-ADD php-fpm.conf /php-fpm.conf
+ADD nginx-gallery.conf entrypoint.sh php-fpm.conf /
 
 VOLUME ["/var/www/var"]
 
@@ -45,7 +43,8 @@ RUN chmod 0777 /var/www/var /entrypoint.sh && \
     mkdir /run/php && \
     echo "short_open_tag = On" >> /etc/php/7.3/fpm/php.ini && \
     echo "short_open_tag = On" >> /etc/php/7.3/cli/php.ini && \
-    cat /php-fpm.conf >> /etc/php/7.3/fpm/pool.d/www.conf
+    cat /php-fpm.conf >> /etc/php/7.3/fpm/pool.d/www.conf && \
+    mv /nginx-gallery.conf /etc/nginx/sites-enabled/default
 
 
 WORKDIR /var/www
