@@ -40,7 +40,7 @@ ADD nginx-gallery.conf entrypoint.sh php-fpm.conf /
 VOLUME ["/var/www/var"]
 
 RUN chmod 0777 /var/www/var /entrypoint.sh && \
-    mkdir /run/php && \
+    mkdir -p /run/php && \
     echo "short_open_tag = On" >> /etc/php/7.3/fpm/php.ini && \
     echo "short_open_tag = On" >> /etc/php/7.3/cli/php.ini && \
     cat /php-fpm.conf >> /etc/php/7.3/fpm/pool.d/www.conf && \

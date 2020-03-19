@@ -23,3 +23,7 @@ This will run the installer from the command line and use the variables defined 
 > docker container exec -it gallery3docker_gallery3_1 php installer/index.php
 
 If you didn't define a default admin password note your randomly generated password.
+
+### Issues
+
+If you have any issues submit them here: https://github.com/bwdutton/gallery3-docker/issues
