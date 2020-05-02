@@ -1,4 +1,4 @@
-A gallery3 container running PHP 7.3 and MariaDB 10.
+A gallery3 container running PHP 7.4 and MariaDB 10.
 
 Here is a sample [docker-compose.yml](https://github.com/bwdutton/gallery3-docker/blob/master/docker-compose.yml). Copy this file to your server and edit the variables if you choose to:
 * MYSQL_ROOT_PASSWORD=myrootpw
