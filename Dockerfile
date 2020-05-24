@@ -43,8 +43,6 @@ RUN chmod 0777 /var/www/var /entrypoint.sh && \
     mkdir -p /run/php && \
     echo "short_open_tag = On" >> /etc/php/7.4/fpm/php.ini && \
     echo "short_open_tag = On" >> /etc/php/7.4/cli/php.ini && \
-    echo "date.timzone = ${TZ}" >> /etc/php/7.4/cli/php.ini && \
-    echo "date.timzone = ${TZ}" >> /etc/php/7.4/fpm/php.ini && \
     cat /php-fpm.conf >> /etc/php/7.4/fpm/pool.d/www.conf && \
     mv /nginx-gallery.conf /etc/nginx/sites-enabled/default
 
