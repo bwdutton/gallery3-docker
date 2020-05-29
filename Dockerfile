@@ -13,6 +13,7 @@ RUN set -ex && \
       php-mysql \
       php-gd \
       php-mbstring \
+      php-redis \
       imagemagick \
       graphicsmagick \
       dcraw \
