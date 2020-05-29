@@ -1,4 +1,4 @@
-A gallery3 container running PHP 7.4 and MariaDB 10.
+A gallery3 container running PHP 7.4. You will have to launch another container with MariaDB 10.
 
 Here is a sample [docker-compose.yml](https://github.com/bwdutton/gallery3-docker/blob/master/docker-compose.yml). Copy this file to your server and edit the variables if you choose to:
 * MYSQL_ROOT_PASSWORD=myrootpw
@@ -12,6 +12,10 @@ Optional settings for CLI installation. Set these in the gallery container in ad
 
 When you start a new gallery installation, in addition to the above, you'll also have to enter the database host which is **mysql**. Once your settings are ready run __docker-compose__.
 
+### Start the containers
+
+Using docker-compose: `docker-compose up -d`
+
 ### HTTP Installer
 
 Go to http://yourhostname, enter the values from the settings above and you should be all set.
@@ -20,7 +24,7 @@ Go to http://yourhostname, enter the values from the settings above and you shou
 
 This will run the installer from the command line and use the variables defined above:
 
-> docker container exec -it gallery3docker_gallery3_1 php installer/index.php
+`docker container exec -it gallery3docker_gallery3_1 php installer/index.php`
 
 If you didn't define a default admin password note your randomly generated password.
 
