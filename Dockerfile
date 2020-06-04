@@ -25,7 +25,7 @@ RUN set -ex && \
 
 RUN \
   git clone https://github.com/bwdutton/gallery3.git && \ 
-  cd /gallery3 && git checkout 3.1.2 && rm -rf .git && \
+  cd /gallery3 && git checkout 3.1.3 && rm -rf .git && \
   sed -i 's/"index.php"/""/g' application/config/config.php && \
   cd / && \
   git clone https://github.com/bwdutton/gallery3-contrib.git && \
