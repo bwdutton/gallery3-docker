@@ -9,8 +9,8 @@ Here is a sample [docker-compose.yml](https://github.com/bwdutton/gallery3-docke
 Optional settings for CLI installation. Set these in the gallery container in addition to the above:
 * DB_PREFIX - set this if you want your tablenames prefixes with a value, e.g. "g3_", defaults to blank
 * G3_PASSWORD - set this to a specific admin password, otherwise one will be generated for you
-* SITE_DOMAIN - set to your domain name if the default does't work (useful with proxies)
-* SITE_PROTOCOL - set the protocol (http or https) if the default does't work (useful with proxies)
+* SITE_DOMAIN - set to your domain name if the default doesn't work (useful with proxies)
+* SITE_PROTOCOL - set the protocol (http or https) if the default doesn't work (useful with proxies)
 
 When you start a new gallery installation, in addition to the above, you'll also have to enter the database host which is **mysql**. Once your settings are ready run __docker-compose__.
 
