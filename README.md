@@ -14,7 +14,7 @@ When you start a new gallery installation, in addition to the above, you'll also
 
 ### Start the containers
 
-Using docker-compose: `docker-compose up -d`
+Using docker-compose: `docker-compose -p gallery3 up -d`
 
 ### HTTP Installer
 
@@ -24,7 +24,7 @@ Go to http://yourhostname, enter the values from the settings above and you shou
 
 This will run the installer from the command line and use the variables defined above:
 
-`docker container exec -it gallery3docker_gallery3_1 php installer/index.php`
+`docker container exec -it gallery3_gallery3_1 php installer/index.php`
 
 If you didn't define a default admin password note your randomly generated password.
 
