@@ -25,6 +25,8 @@ services:
       MYSQL_HOST: mysql
       G3_PASSWORD:
       DB_PREFIX:
+      SITE_DOMAIN:
+      SITE_PROTOCOL:
     ports:
       - "80:80"
     volumes:
