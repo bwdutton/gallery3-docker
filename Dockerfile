@@ -7,6 +7,7 @@ RUN set -ex && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
       ca-certificates \
+      composer \
       nginx \
       php-fpm \
       php-xml \
@@ -35,7 +36,10 @@ RUN \
   rm -rf /var/www/* && \
   cp -r /gallery3/. /var/www/ && \
   rm -rf /gallery3 && \
-  chown -R www-data:www-data /var/www/*
+  chown -R www-data:www-data /var/www/* && \
+  cd /var/www && \
+  composer install && \
+  composer clear-cache
 
 ADD nginx-gallery.conf entrypoint.sh php-fpm.conf /
 
