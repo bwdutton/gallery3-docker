@@ -56,4 +56,4 @@ WORKDIR /var/www
 
 EXPOSE 80
 
-CMD /entrypoint.sh
+ENTRYPOINT [ "/entrypoint.sh" ]

@@ -20,4 +20,12 @@ chown www-data:www-data /var/www/var
 
 /etc/init.d/nginx start
 
-/usr/sbin/php-fpm7.4 --nodaemonize
+function stopall() {
+	echo "Stopping gallery3..."
+	/etc/init.d/nginx stop
+}
+
+trap "stopall" SIGKILL SIGTERM SIGHUP SIGINT EXIT
+
+/usr/sbin/php-fpm7.4 --nodaemonize &
+wait
