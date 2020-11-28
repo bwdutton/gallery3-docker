@@ -53,7 +53,8 @@ RUN chmod 0777 /var/www/var /entrypoint.sh && \
     echo "short_open_tag = On" >> /etc/php/7.4/fpm/php.ini && \
     echo "short_open_tag = On" >> /etc/php/7.4/cli/php.ini && \
     cat /php-fpm.conf >> /etc/php/7.4/fpm/pool.d/www.conf && \
-    mv /nginx-gallery.conf /etc/nginx/sites-enabled/default
+    mv /nginx-gallery.conf /etc/nginx/sites-enabled/default && \
+    sed -i 's/^error_log =.*/error_log=\/dev\/stderr/g' /etc/php/7.4/fpm/php-fpm.conf
 
 WORKDIR /var/www
 
