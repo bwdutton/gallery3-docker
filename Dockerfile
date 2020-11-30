@@ -38,10 +38,12 @@ RUN \
   rm -rf /gallery3 && \
   chown -R www-data:www-data /var/www/* && \
   cd /var/www && \
+  rm -rf modules/dropzone && \
+  # this is built in now, remove it as to no confuse people
   composer install && \
   composer clear-cache
 
-ADD nginx-gallery.conf entrypoint.sh php-fpm.conf /
+ADD local.php nginx-gallery.conf entrypoint.sh php-fpm.conf /
 
 VOLUME ["/var/www/var"]
 

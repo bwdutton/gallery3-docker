@@ -16,6 +16,11 @@ if [ ! -z "${SITE_PROTOCOL}" ]; then
   echo "env[SITE_PROTOCOL] = ${SITE_PROTOCOL}" >> /etc/php/7.4/fpm/pool.d/www.conf
 fi
 
+rm -rf /var/www/local.php
+if [ ! -z "${DEVELOPMENT}" ]; then
+  cp -rp /local.php /var/www/local.php
+fi
+
 chown www-data:www-data /var/www/var
 
 /etc/init.d/nginx start

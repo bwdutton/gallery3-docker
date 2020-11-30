@@ -13,6 +13,7 @@ Optional settings for CLI installation:
 Optional settings for the web server:
 * SITE_DOMAIN - set to your domain name if the default doesn't detection work (useful with proxies)
 * SITE_PROTOCOL - set the protocol (http or https) if the default detection doesn't work (useful with proxies)
+* DEVELOPMENT - set to 1 to enable developer debugging
 
 When you start a new gallery installation, in addition to the above, you'll also have to enter the database host which is **mysql**. Once your settings are ready run __docker-compose__.
 
