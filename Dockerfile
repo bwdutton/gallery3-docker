@@ -8,6 +8,7 @@ RUN set -ex && \
   apt-get install -y --no-install-recommends \
       ca-certificates \
       composer \
+      jhead \
       nginx \
       php-fpm \
       php-xml \
