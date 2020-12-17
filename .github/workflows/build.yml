@@ -1,10 +1,10 @@
 name: build docker
 
 on:
-	push:
+  push:
 
 jobs:
- buildx:
+  buildx:
     runs-on: ubuntu-latest
     steps:
       -
