@@ -21,6 +21,8 @@ if [ ! -z "${DEVELOPMENT}" ]; then
   cp -rp /local.php /var/www/local.php
 fi
 
+mkdir -p /var/www/var
+
 chown www-data:www-data /var/www/var
 
 /etc/init.d/nginx start
