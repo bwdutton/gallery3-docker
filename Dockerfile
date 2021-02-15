@@ -29,6 +29,7 @@ RUN \
   git clone https://github.com/bwdutton/gallery3.git && \ 
   cd /gallery3 && git checkout 3.1.3 && rm -rf .git && \
   sed -i 's/"index.php"/""/g' application/config/config.php && \
+  sed -i 's/"no_htaccess"] = "";/"no_htaccess"] = "1";/g' application/config/config.php && \
   cd / && \
   git clone https://github.com/bwdutton/gallery3-contrib.git && \
   mv /gallery3-contrib/3.0/modules/* /gallery3/modules/ && \
