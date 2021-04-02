@@ -6,11 +6,11 @@ ENV TZ UTC
 RUN set -ex && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
+      apache2 \
       ca-certificates \
       composer \
       jhead \
-      nginx \
-      php-fpm \
+      libapache2-mod-php \
       php-xml \
       php-mysql \
       php-gd \
@@ -28,35 +28,35 @@ RUN set -ex && \
 RUN \
   git clone https://github.com/bwdutton/gallery3.git && \ 
   cd /gallery3 && git checkout 3.1.3 && rm -rf .git && \
-  sed -i 's/"index.php"/""/g' application/config/config.php && \
-  sed -i 's/"no_htaccess"] = "";/"no_htaccess"] = "1";/g' application/config/config.php && \
   cd / && \
   git clone https://github.com/bwdutton/gallery3-contrib.git && \
   mv /gallery3-contrib/3.0/modules/* /gallery3/modules/ && \
   mv /gallery3-contrib/3.0/themes/* /gallery3/themes/ && \
   rm -rf /gallery3-contrib && \
   rm -rf /var/www/* && \
-  cp -r /gallery3/. /var/www/ && \
+  mkdir -p /var/www/html && \
+  cp -r /gallery3/. /var/www/html && \
   rm -rf /gallery3 && \
   chown -R www-data:www-data /var/www/* && \
-  cd /var/www && \
+  cd /var/www/html && \
   rm -rf modules/dropzone && \
   # this is built in now, remove it as to no confuse people
   composer install && \
   composer clear-cache
 
-ADD local.php nginx-gallery.conf entrypoint.sh php-fpm.conf /
+ADD local.php php.settings entrypoint.sh site.conf /
 
-VOLUME ["/var/www/var"]
+VOLUME ["/var/www/html/var"]
+
+WORKDIR /var/www/html
 
 RUN chmod 0777 /entrypoint.sh && \
-    mkdir -p /run/php && \
-    echo "short_open_tag = On" >> /etc/php/7.4/fpm/php.ini && \
-    echo "short_open_tag = On" >> /etc/php/7.4/cli/php.ini && \
-    cat /php-fpm.conf >> /etc/php/7.4/fpm/pool.d/www.conf && \
-    mv /nginx-gallery.conf /etc/nginx/sites-enabled/default
-
-WORKDIR /var/www
+    sed -i 's/"index.php"/""/g' application/config/config.php && \
+    a2enmod rewrite && \
+    mv /site.conf /etc/apache2/sites-enabled && \
+    rm /etc/apache2/sites-enabled/000-default.conf && \
+    cat /php.settings >> /etc/php/7.4/cli/php.ini && \
+    cat /php.settings >> /etc/php/7.4/apache2/php.ini
 
 EXPOSE 80
 

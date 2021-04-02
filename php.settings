@@ -1,0 +1,4 @@
+short_open_tag = On
+memory_limit = 120M
+upload_max_filesize = 100M
+post_max_size = 105M
