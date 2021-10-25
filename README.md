@@ -1,6 +1,6 @@
 ## Upgrade Note
 
-The original (nginx) version of this container used /var/www/var for the volume but this has been changed to /var/www/html/var in the latest apache containers. Please update your docker bind mounts or if you are using the built in volume you will need to `docker cp` the data out of your existing container and into your new container.
+The original (docker hub) version of this container used /var/www/var for the volume. This has been changed to /var/www/html/var in the latest apache containers found on github. Please update your docker bind mounts or if you are using the built in volume you will need to `docker cp` the data out of your existing container and into your new container.
 
 ## Readme
 
