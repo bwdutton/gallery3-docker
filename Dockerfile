@@ -1,10 +1,11 @@
-FROM ubuntu:focal
+FROM ubuntu:hirsute
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ UTC
 
 RUN set -ex && \
   apt-get update && \
+  apt-get upgrade -y && \
   apt-get install -y --no-install-recommends \
       apache2 \
       ca-certificates \
@@ -16,18 +17,22 @@ RUN set -ex && \
       php-gd \
       php-mbstring \
       php-redis \
+      php-zip \
       imagemagick \
       graphicsmagick \
       dcraw \
       ffmpeg \
       git \
       mysql-client \
+      unzip \
       && \
    apt-get clean autoclean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 
+ARG GALLERY_VERSION=3.1.3
+
 RUN \
   git clone https://github.com/bwdutton/gallery3.git && \ 
-  cd /gallery3 && git checkout 3.1.3 && rm -rf .git && \
+  cd /gallery3 && git checkout $GALLERY_VERSION && rm -rf .git && \
   cd / && \
   git clone https://github.com/bwdutton/gallery3-contrib.git && \
   mv /gallery3-contrib/3.0/modules/* /gallery3/modules/ && \
@@ -37,7 +42,9 @@ RUN \
   mkdir -p /var/www/html && \
   cp -r /gallery3/. /var/www/html && \
   rm -rf /gallery3 && \
-  chown -R www-data:www-data /var/www/* && \
+  mkdir -p /var/www/html/var && \
+  mv /var/www/html/bin /var/www && \
+  chown -R www-data:www-data /var/www/html/var && \
   cd /var/www/html && \
   rm -rf modules/dropzone && \
   # this is built in now, remove it as to no confuse people
