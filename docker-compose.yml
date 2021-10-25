@@ -30,4 +30,4 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./gallery-var:/var/www/var
+      - ./gallery-var:/var/www/html/var
