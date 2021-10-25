@@ -41,7 +41,7 @@ RUN \
   cd /var/www/html && \
   rm -rf modules/dropzone && \
   # this is built in now, remove it as to no confuse people
-  composer install --no-dev && \
+  composer install --no-dev --optimize-autoloader && \
   composer clear-cache
 
 ADD local.php php.settings entrypoint.sh site.conf /
