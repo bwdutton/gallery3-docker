@@ -1,3 +1,9 @@
+## Upgrade Note
+
+The original (nginx) version of this container used /var/www/var for the volume but this has been changed to /var/www/html/var in the latest apache containers. Please update your docker bind mounts or if you are using the built in volume you will need to `docker cp` the data out of your existing container and into your new container.
+
+## Readme
+
 A gallery3 container running PHP 7.4. You will have to launch another container with MariaDB 10.
 
 Here is a sample [docker-compose.yml](https://github.com/bwdutton/gallery3-docker/blob/master/docker-compose.yml). Copy this file to your server and edit the variables if you choose to (in both container configurations):
