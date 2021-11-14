@@ -34,5 +34,5 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository }}:3
-            ghcr.io/${{ github.repository }}:3.14
+            ghcr.io/${{ github.repository }}:3.15
             ghcr.io/${{ github.repository }}:latest

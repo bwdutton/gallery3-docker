@@ -28,7 +28,8 @@ RUN set -ex && \
       && \
    apt-get clean autoclean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 
-ARG GALLERY_VERSION=3.1.4
+# update github workflow file too
+ARG GALLERY_VERSION=3.1.5
 
 RUN \
   git clone https://github.com/bwdutton/gallery3.git && \ 
