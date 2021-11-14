@@ -21,6 +21,11 @@ Optional settings for the web server:
 * SITE_PROTOCOL - set the protocol (http or https) if the default detection doesn't work (useful with proxies)
 * DEVELOPMENT - set to 1 to enable developer debugging
 
+To increase the maximum file size you can upload you'll need to increase these the memory settings which correspond the PHP settings:
+* MEMORY_LIMIT - memory_limit
+* UPLOAD_MAX_FILESIZE - upload_max_filesize
+* POST_MAX_SIZE - post_max_size
+
 When you start a new gallery installation, in addition to the above, you'll also have to enter the database host which is **mysql**. Once your settings are ready run __docker-compose__.
 
 ### Start the containers
