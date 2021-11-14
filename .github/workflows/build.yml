@@ -30,9 +30,9 @@ jobs:
           context: .
           file: ./Dockerfile
           #platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
           tags: |
             ghcr.io/${{ github.repository }}:3
-            ghcr.io/${{ github.repository }}:3.13
+            ghcr.io/${{ github.repository }}:3.14
             ghcr.io/${{ github.repository }}:latest
