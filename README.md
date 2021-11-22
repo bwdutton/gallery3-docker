@@ -11,6 +11,7 @@ Here is a sample [docker-compose.yml](https://github.com/bwdutton/gallery3-docke
 * MYSQL_DATABASE=gallery3
 * MYSQL_USER=gallery3
 * MYSQL_PASSWORD=mygallery3pw
+* MYSQL_HOST=mysqlservername
 
 Optional settings for CLI installation:
 * DB_PREFIX - set this if you want your tablenames prefixes with a value, e.g. "g3_", defaults to blank
