@@ -1,4 +1,7 @@
-FROM ubuntu:hirsute
+FROM ubuntu:impish
+
+ARG PHP_VER=8.0
+ENV PHP_VER=8.0
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ UTC
@@ -63,8 +66,8 @@ RUN chmod 0777 /entrypoint.sh && \
     a2enmod rewrite && \
     mv /site.conf /etc/apache2/sites-enabled && \
     rm /etc/apache2/sites-enabled/000-default.conf && \
-    cat /php.settings >> /etc/php/7.4/cli/php.ini && \
-    cat /php.settings >> /etc/php/7.4/apache2/php.ini
+    cat /php.settings >> /etc/php/${PHP_VER}/cli/php.ini && \
+    cat /php.settings >> /etc/php/${PHP_VER}/apache2/php.ini
 
 EXPOSE 80
 
