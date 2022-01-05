@@ -13,6 +13,7 @@ RUN set -ex && \
       apache2 \
       ca-certificates \
       composer \
+      ghostscript \
       jhead \
       libapache2-mod-php \
       php-xml \
