@@ -14,6 +14,7 @@ RUN set -ex && \
       ca-certificates \
       composer \
       ghostscript \
+      gnutls-bin \
       jhead \
       libapache2-mod-php \
       php-xml \
