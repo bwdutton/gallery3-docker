@@ -18,11 +18,17 @@ jobs:
         uses: docker/setup-buildx-action@v2
       -
         name: Login to GitHub Container Registry
-        uses: docker/login-action@v2 
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.CR_PAT }}
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build and push
         uses: docker/build-push-action@v3
@@ -36,3 +42,11 @@ jobs:
             ghcr.io/${{ github.repository }}:3
             ghcr.io/${{ github.repository }}:3.15
             ghcr.io/${{ github.repository }}:latest
+      - name: Push image
+        uses: akhilerm/tag-push-action@v2.0.0
+        with:
+          src: ghcr.io/${{ github.repository }}:latest
+          dst: |
+            docker.io/bwdutton/gallery3:3
+            docker.io/bwdutton/gallery3:3.1.5
+            docker.io/bwdutton/gallery3:latest
