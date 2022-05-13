@@ -13,23 +13,24 @@ RUN set -ex && \
       apache2 \
       ca-certificates \
       composer \
-      ghostscript \
-      gnutls-bin \
-      jhead \
-      libapache2-mod-php \
-      php-xml \
-      php-mysql \
-      php-gd \
-      php-mbstring \
-      php-redis \
-      php-zip \
-      imagemagick \
-      graphicsmagick \
       dcraw \
       ffmpeg \
+      ghostscript \
+      gnutls-bin \
       git \
+      graphicsmagick \
+      imagemagick \
+      jhead \
+      libapache2-mod-php \
       mysql-client \
+      php-gd \
+      php-mbstring \
+      php-mysql \
+      php-redis \
+      php-xml \
+      php-zip \
       unzip \
+      webp \
       && \
    apt-get clean autoclean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 
