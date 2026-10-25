@@ -12,17 +12,16 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
   gallery3:
-    image: bwdutton/gallery3
+    image: ghcr.io/bwdutton/gallery3
 #    build:
 #      context: .
 #      dockerfile: Dockerfile
     environment:
 # set these if you wish to use the CLI installer, otherwise you enter them on the web
-      MYSQL_ROOT_PASSWORD: myrootpw
-      MYSQL_DATABASE: gallery3
-      MYSQL_USER: gallery3
-      MYSQL_PASSWORD: mygallery3pw
-      MYSQL_HOST: mysql
+      DB_DATABASE: gallery3
+      DB_USER: gallery3
+      DB_PASSWORD: mygallery3pw
+      DB_HOST: mysql
       G3_PASSWORD:
       DB_PREFIX:
       SITE_DOMAIN:

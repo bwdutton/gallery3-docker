@@ -1,12 +1,15 @@
-FROM ubuntu:impish
+FROM ubuntu:resolute
 
-ARG PHP_VER=8.0
-ENV PHP_VER=8.0
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=UTC
 
-ENV DEBIAN_FRONTEND noninteractive
-ENV TZ UTC
+ARG PHP_VER=8.5
+ENV PHP_VER=8.5
 
 RUN set -ex && \
+  apt-get update && \
+  apt-get install -y --no-install-recommends  software-properties-common curl && \
+  curl -fsSL https://packages.sury.org/php/README.txt | bash && \
   apt-get update && \
   apt-get upgrade -y && \
   apt-get install -y --no-install-recommends \
@@ -23,22 +26,22 @@ RUN set -ex && \
       jhead \
       libapache2-mod-php \
       mysql-client \
-      php-gd \
-      php-mbstring \
-      php-mysql \
-      php-redis \
-      php-xml \
-      php-zip \
+      php${PHP_VER}-gd \
+      php${PHP_VER}-mbstring \
+      php${PHP_VER}-mysql \
+      php${PHP_VER}-redis \
+      php${PHP_VER}-xml \
+      php${PHP_VER}-zip \
       unzip \
       webp \
       && \
-   apt-get clean autoclean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
+   apt-get clean autoclean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # update github workflow file too
-ARG GALLERY_VERSION=3.1.5
+ARG GALLERY_VERSION=3.1.6
 
 RUN \
-  git clone https://github.com/bwdutton/gallery3.git && \ 
+  git clone https://github.com/bwdutton/gallery3.git && \
   cd /gallery3 && git checkout $GALLERY_VERSION && rm -rf .git && \
   cd / && \
   git clone https://github.com/bwdutton/gallery3-contrib.git && \
@@ -58,6 +61,9 @@ RUN \
   composer install --no-dev --optimize-autoloader && \
   composer clear-cache
 
+RUN mkdir -p /var/www/html/var && \
+    chown -R www-data:www-data /var/www/html
+
 ADD local.php php.settings entrypoint.sh site.conf /
 
 VOLUME ["/var/www/html/var"]
@@ -70,7 +76,8 @@ RUN chmod 0777 /entrypoint.sh && \
     mv /site.conf /etc/apache2/sites-enabled && \
     rm /etc/apache2/sites-enabled/000-default.conf && \
     cat /php.settings >> /etc/php/${PHP_VER}/cli/php.ini && \
-    cat /php.settings >> /etc/php/${PHP_VER}/apache2/php.ini
+    cat /php.settings >> /etc/php/${PHP_VER}/apache2/php.ini && \
+   php -v
 
 EXPOSE 80
 
