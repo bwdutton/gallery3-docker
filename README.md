@@ -6,8 +6,7 @@ The original (docker hub) version of this container used /var/www/var for the vo
 
 A gallery3 container running PHP 8.5. You will have to launch another container with MariaDB 10.
 
-Here is a sample [docker-compose.yml](https://github.com/bwdutton/gallery3-docker/blob/master/docker-compose.yml). Copy this file to your server and edit the variables if you choose to (in both container configurations):
-* DB_ROOT_PASSWORD=myrootpw
+Here is a sample [docker-compose.yml](https://github.com/bwdutton/gallery3-docker/blob/master/docker-compose.yml). Copy this file to your server and edit the variables. The DB_\* variables are only needed for CLI installation:
 * DB_DATABASE=gallery3
 * DB_USER=gallery3
 * DB_PASSWORD=mygallery3pw
