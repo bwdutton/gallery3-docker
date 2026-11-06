@@ -79,4 +79,6 @@ RUN chmod 0777 /entrypoint.sh && \
 
 EXPOSE 80
 
+VOLUME ["/config"]
+
 ENTRYPOINT [ "/entrypoint.sh" ]

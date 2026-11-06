@@ -41,6 +41,14 @@ if [ ! -z "${POST_MAX_SIZE}" ]; then
 	echo "post_max_size = ${POST_MAX_SIZE}" >> /var/www/html/php.ini
 fi
 
+$ROBOT_CONFIG = '/config/robots.txt'
+
+if [ -f "$ROBOT_CONFIG" ]; then
+	echo "Copying custom robots.txt"
+	cp -f $ROBOT_CONFIG /var/www/html/robots.txt
+	chown www-data:www-data /var/www/html/robots.txt
+fi
+
 mkdir -p /var/www/html/var
 
 chown www-data:www-data /var/www/html/var
