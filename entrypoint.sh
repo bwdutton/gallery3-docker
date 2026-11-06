@@ -13,6 +13,13 @@ if [ ! -z "${DEVELOPMENT}" ]; then
   cp -rp /local.php /var/www/html/local.php
 fi
 
+if [ "${VALIDATE_TIMESTAMPS}" == "off" ]; then
+	sed -i 's/opcache.validate_timestamps.*//' /etc/php/${PHP_VER}/cli/php.ini /etc/php/${PHP_VER}/apache2/php.ini /var/www/html/php.ini
+	echo "opcache.validate_timestamps = 0" >> /etc/php/${PHP_VER}/cli/php.ini
+	echo "opcache.validate_timestamps = 0" >> /etc/php/${PHP_VER}/apache2/php.ini
+	echo "opcache.validate_timestamps = 0" >> /var/www/html/php.ini
+fi
+
 if [ "${SITE_PROTOCOL}" == "https" ]; then
 	sed -i 's/session.cookie_secure.*//' /etc/php/${PHP_VER}/cli/php.ini /etc/php/${PHP_VER}/apache2/php.ini /var/www/html/php.ini
 	echo "session.cookie_secure = On" >> /etc/php/${PHP_VER}/cli/php.ini
