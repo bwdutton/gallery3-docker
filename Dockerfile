@@ -6,6 +6,9 @@ ENV TZ=UTC
 ARG PHP_VER=8.5
 ENV PHP_VER=8.5
 
+# update github workflow file too
+ARG GALLERY_VERSION=3.1.6
+
 RUN set -ex && \
   apt-get update && \
   apt-get install -y --no-install-recommends  software-properties-common curl && \
@@ -37,9 +40,6 @@ RUN set -ex && \
       && \
    apt-get clean autoclean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# update github workflow file too
-ARG GALLERY_VERSION=3.1.6
-
 RUN \
   git clone https://github.com/bwdutton/gallery3.git && \
   cd /gallery3 && git checkout $GALLERY_VERSION && rm -rf .git && \
@@ -57,12 +57,10 @@ RUN \
   chown -R www-data:www-data /var/www/html/var && \
   cd /var/www/html && \
   rm -rf modules/dropzone && \
-  # this is built in now, remove it as to no confuse people
   composer install --no-dev --optimize-autoloader && \
-  composer clear-cache
-
-RUN mkdir -p /var/www/html/var && \
-    chown -R www-data:www-data /var/www/html
+  composer clear-cache && \
+  mkdir -p /var/www/html/var && \
+  chown -R www-data:www-data /var/www/html
 
 ADD local.php php.settings entrypoint.sh site.conf /
 
